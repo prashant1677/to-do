@@ -5,7 +5,8 @@
       <div class="screen__content">
        
         <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <!-- <h2>Login</h2> -->
+          <h1><b>Login </b></h1>
+
           <div class="login__field">
             <!-- <label for="userName">UserName</label> -->
             <input type="text" formControlName="userName" class="login__input"
@@ -22,12 +23,16 @@
               <div *ngIf="f['password'].errors?.['required']">Password is required</div>
             </div>
           </div>
-          <div class="login__field inline">
+          <div class="login__field">
             <button [disabled]="loading" class="button login__submit">
               <span *ngIf="loading" class="spinner-border spinner-border-sm mx-2"></span>
               Login
             </button>
-            <a routerLink="/register" class="login__submit mx-4">Register</a>
+            <br>
+            <p>Do not have an account?
+
+            </p>
+            <a routerLink="/register">Create an account</a>
             
           </div>
         </form>

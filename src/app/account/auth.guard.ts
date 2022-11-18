@@ -22,11 +22,11 @@ export class AuthGuard implements CanActivate {
       console.log("Guard activated for unauth req");
       this.router.navigate(['/login']);
     }
-    else{
-      console.log("Guard activated for logged in user");
-      // this.router.navigate(['/todo']);
+    // else{
+    //   console.log("Guard activated for logged in user");
+    //   // this.router.navigate(['/todo']);
+    // }
 
-      return isAuth;
-    }
+    return isAuth;
   }
 }

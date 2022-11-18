@@ -41,15 +41,8 @@ export class AuthService {
   // createAccount(authData:AuthData) {
     createAccount(regData) {
     // const regData1 = {fullName:fullName, email: email, password: password };
-    this.http.post(BACKEND_URL + "/register",regData)
-    .subscribe({
-      next:(response) => {
-        this.router.navigate(["/"]);
-      },
-      error:(err) => {
-        this.authStatusListener.next(false);
-      }
-    });
+    return this.http.post(BACKEND_URL + "/register",regData)
+    
   }
 
   // login(authData:AuthData) {
@@ -60,36 +53,7 @@ export class AuthService {
           BACKEND_URL + "/login",
           authData
         )
-        .subscribe({
-          next:(response) => {
-            const token = response.token;
-            this.token = token;
-            if (token) {
-              console.log("In auth login",response);
-              const expiresInDuration = response.expiresIn;
-              this.setAuthTimer(expiresInDuration);
-              this.isAuthenticated = true;
-              this.userId = response.userId;
-              this.authStatusListener.next(true);
-              const now = new Date();
-              const expirationDate = new Date(
-                now.getTime() + expiresInDuration * 1000
-              );
-              console.log(expirationDate);
-              this.saveAuthData(token, expirationDate, this.userId);
-              this.router.navigate(["/todo"]);
-            }
-            else{
-              // if(response.statusCode==0){
-                console.log("Username or password is incorrect");
-              // }
-            }
-          },
-          error:(err) => {
-            console.log("Login Failed ::"+err);
-            this.authStatusListener.next(false);
-          }
-      });
+        
     }
 
   autoAuthUser() {
@@ -118,7 +82,7 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  private setAuthTimer(duration: number) {
+   setAuthTimer(duration: number) {
     console.log("Setting timer: " + duration);
     this.tokenTimer = setTimeout(() => {
       this.logout();
@@ -126,7 +90,7 @@ export class AuthService {
   }
 
   //save auth data in localStorage
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+   saveAuthData(token: string, expirationDate: Date, userId: string) {
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
     localStorage.setItem("userId", userId);
