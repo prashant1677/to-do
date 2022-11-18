@@ -1,0 +1,112 @@
+<section class="box bg">
+  <div class="container">
+    <div class="screen">
+      <div class="screen__content">
+
+        <mat-card style="height: inherit;">
+
+          <form class="login" [formGroup]="registrationForm" (ngSubmit)="onSignup()">
+            <h1><b>User Registration</b></h1>
+
+            <div class="login__field">
+              <input type="text" formControlName="fullName" class="login__input" placeholder="Full name"
+              [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }" />
+              <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+                <div *ngIf="f['fullName'].errors.required">Full Name is required</div>
+            </div>
+            </div>
+
+
+            <div class="login__field">
+              <input type="text" formControlName="emailId" class="login__input" placeholder="Email" 
+              [ngClass]="{ 'is-invalid': submitted && f['emailId'].errors }"/>
+              <div *ngIf="submitted && f['emailId'].errors" class="invalid-feedback">
+                <div *ngIf="f['emailId'].errors.email">Email must be a valid email address</div>
+                <div *ngIf="f['emailId'].errors.required">Email is required</div>
+              </div>
+            </div>
+
+            <div class="login__field">
+              <input type="text" formControlName="password" class="login__input" placeholder="password" 
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"/>
+              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['password'].errors.required">Password is required</div>
+                <div *ngIf="f['password'].errors.minlength">Password must be at least 6 characters</div>
+            </div>
+            </div>
+
+            <div class="login__field">
+              <input type="text" formControlName="cnfPassword" class="login__input" placeholder="Confirm password" 
+              [ngClass]="{ 'is-invalid': submitted && f['cnfPassword'].errors }"/>
+              <div *ngIf="submitted && f['cnfPassword'].errors" class="invalid-feedback">
+                <div *ngIf="f['cnfPassword'].errors.required">Password is required</div>
+                <div *ngIf="f['cnfPassword'].errors.minlength">Password must be at least 6 characters</div>
+                <div *ngIf="f['password'].value!=f['cnfPassword'].value">Password not matched</div>
+            </div>
+            </div>
+
+
+
+            <div class="login__field inline">
+              <button class="button login__submit">
+                <!-- <span class="spinner-border spinner-border-sm mx-2"></span> -->
+                Register
+              </button>
+              <!-- <a routerLink="/login" class="login__submit mx-4">Login</a> -->
+
+            </div>
+          </form>
+
+
+          <!-- <form class="login" (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoggedIn">
+            <h1><b>User Registration</b></h1>
+
+            <div class="login__field">
+              <mat-form-field>
+                <input matInput name="fullName" ngModel type="text" placeholder="Full Name" #fullNameInput="ngModel"
+                  required fullName>
+                <mat-error *ngIf="fullNameInput.invalid">Please enter a valid name.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="login__field">
+
+              <mat-form-field>
+                <input email="true" matInput name="userName" ngModel placeholder="Email Id" #userNameInput="ngModel"
+                  required userName pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                <mat-error *ngIf="userNameInput.errors && userNameInput.errors.required">Email Id is required.
+                </mat-error>
+                <mat-error *ngIf="userNameInput.errors && userNameInput.errors.email">Please enter a valid email Id.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="login__field">
+
+              <mat-form-field>
+                <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel"
+                  required>
+                <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="login__field">
+
+              <mat-form-field>
+                <input type="password" name="cnfPassword" ngModel matInput placeholder="Confirm password"
+                  #cnfPasswordInput="ngModel" required>
+                  <mat-error *ngIf="false">Password and Confirm password should be same.</mat-error>
+                  <mat-error *ngIf="cnfPasswordInput.invalid">Password is required.</mat-error>
+                </mat-form-field>
+                 {{signupForm.controls.cnfPassword.value==signupForm.controls.cnfPassword.value }} -->
+          <!-- </div> -->
+          <!-- <button class=" login__submit" color="accent" type="submit" *ngIf="!isLoggedIn">Signup</button> -->
+          <!-- </form> -->
+
+
+        </mat-card>
+
+      </div>
+      <!-- </div> -->
+    </div>
+
+  </div>
+
+</section>

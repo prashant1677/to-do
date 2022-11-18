@@ -1,0 +1,92 @@
+<div class="board" cdkDropList cdkDropListOrientation="horizontal">
+ <!-- style="background-color: #4a4e7f;"> -->
+    <div *ngFor="let bucket of taskList" class="card-list mat-elevation-z1" style="height: fit-content;">
+        <!-- style="background-color: lightgrey;" -->
+        <div class="row" fxLayoutAlign="start center">
+            <!-- <h2 fxFlex="80" class="mat-h2">{{bucket.bucketName}} - {{bucket.tasks.length}}
+            </h2> -->
+            <h2>
+                <span class="d-block p-2 bg-secondary text-white" matBadge={{bucket.tasks.length}}
+                    matBadgeOverlap="true">{{bucket.bucketName}}
+                    <span class="float-end" *ngIf="bucket.tasks.length==0">
+                        <button mat-button (click)="deleteBucket(bucket.bucketId)">
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>
+                    </span>
+                </span>
+
+            </h2>
+
+        </div>
+        <div *ngIf="bucket.tasks.length>0" cdkDropList [cdkDropListData]="newTasks" class="card-list-content"
+            (cdkDropListDropped)="drop($event, newTasks)">
+            <!-- ///## sending name from parent to child  -->
+            <app-card *ngFor="let task of bucket.tasks" [name]="task.name" cdkDrag
+                (edit)="openAddEditDialog(bucket.bucketId, task.id, task.name)" 
+                (delete)="deleteTask(task)">
+                <!-- (edit)="onEdit(task)" -->
+            </app-card>
+
+
+        </div>
+        <div *ngIf="bucket.tasks.length==0" cdkDropList [cdkDropListData]="newTasks" class="example-list"
+            (cdkDropListDropped)="drop($event, newTasks)">
+            <div class="example-box">
+                No tasks
+
+            </div>
+        </div>
+        <!-- <form (submit)="saveTask(newTaskForm, bucket.bucketId)" style="display: none;" #newTaskForm="ngForm" id="{{'newTaskForm'+bucket.bucketId}}">
+            <mat-form-field appearance="outline">
+                <mat-label>Task Name</mat-label>
+                <input name="newTaskTxtBox" matInput type="text" placeholder="Add task" ngModel required>
+      <mat-icon (click)="hideAdd(bucket.bucketId)" class="icon">cancel_outline</mat-icon>
+
+            </mat-form-field>
+            <button mat-raised-button color="accent" type="submit">Add</button>
+        </form> -->
+        <!-- <form id="{{'newTaskForm'+bucket.bucketId}}" style="display: none;">
+            <div class="example-box">
+                <mat-form-field appearance="outline">
+                    <mat-label>Task Name</mat-label>
+                    <input id="{{'newTaskTxtBox'+bucket.bucketId}}" matInput placeholder="Add task">
+                </mat-form-field>
+                <a (click)="saveTask(bucket.bucketId)" mat-raised-button color="primary">
+                    <mat-icon>add</mat-icon>
+                </a>
+                <a (click)="hideAdd(bucket.bucketId)" mat-raised-button>
+                    <mat-icon>cancel</mat-icon>
+                </a>
+            </div>
+        </form> -->
+        <!-- <button mat-raised-button color="primary" (click)="showAdd(bucket.bucketId)">
+            <mat-icon>add</mat-icon>
+            Add another task
+        </button> -->
+        <div fxLayout="row" fxLayoutAlign="baseline baseline">
+            <!-- <button style="width: fit-content;" class="add-talk" (click)="showAdd(bucket.bucketId)" color="primary" mat-raised-button>Add task</button> -->
+            <button mat-raised-button color="primary" style="width: fit-content;"
+                (click)="openAddEditDialog(bucket.bucketId)">Add a card</button>
+            <!-- <app-dialog></app-dialog> -->
+            <!-- <app-add-edit></app-add-edit> -->
+
+        </div>
+    </div>
+    <div class="section mat-elevation-z1">
+        <div class="row" fxLayoutAlign="start center">
+
+            <form [formGroup]="addBucketForm">
+                <div class="example-box">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Add another list</mat-label>
+                        <input formControlName="bucketName" id="newBucketTxtBox" matInput placeholder="Bucket Name"
+                            required>
+                    </mat-form-field>
+                    <button style="margin-left:10px" color="primary" (click)="addBucket()" mat-raised-button>
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

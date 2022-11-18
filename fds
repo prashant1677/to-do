@@ -1,0 +1,65 @@
+[33mcommit 8fc4c59279ec65c845093b73a3d90355326a5bca[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 15:03:32 2022 +0530
+
+    undo docs index base href
+
+[33mcommit f1c8971b2fbfd84bf21fa449ea5c3305e1058061[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 14:59:32 2022 +0530
+
+    undo index href
+
+[33mcommit 362cc2220d9a1d219b3d0658bb5f7ecf6c9fe0e8[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 14:55:01 2022 +0530
+
+    undo angular json 500kb
+
+[33mcommit eaa0877fc2b01b4281844bf2d6f84a21fe260e4e[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 13:46:55 2022 +0530
+
+    environement prod false
+
+[33mcommit c7b31a0212291de3f2bf4cd503802ca789b021fb[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 12:26:45 2022 +0530
+
+    debugs
+
+[33mcommit 4cf2af0a5ec8a83e08933990c0c18efbbd487c59[m[33m ([m[1;31mlive/main[m[33m)[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Fri Jun 24 11:07:41 2022 +0530
+
+    new ng build for git pages
+
+[33mcommit 3037decf4242e23b4716247f0596324f696a736e[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Thu Jun 23 23:43:11 2022 +0530
+
+    connected with aws ec2
+
+[33mcommit f3f33f319ad637db937e0968031b624d19352ceb[m[33m ([m[1;31morigin/live[m[33m, [m[1;31mlive/live[m[33m)[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Tue Jun 21 23:40:53 2022 +0530
+
+    build for github live pages
+
+[33mcommit 93331215f18d640d9934432260b7cc669aa99b20[m
+Author: Prashant <51319995+prashant1677@users.noreply.github.com>
+Date:   Tue Jun 21 22:14:33 2022 +0530
+
+    Set theme jekyll-theme-merlot
+
+[33mcommit 9b90d1b995b14f8885c7f275be70c19fde7a0d18[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Tue Jun 21 22:01:51 2022 +0530
+
+    todo core features
+
+[33mcommit 2ce6a10c1740357f9ad3727a94e7f2f16a7bccef[m
+Author: prashant1677 <prashantchauhan16215@gmail.com>
+Date:   Tue Jun 21 18:26:36 2022 +0530
+
+    first commit

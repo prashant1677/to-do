@@ -1,0 +1,19 @@
+<!-- <p>card works!</p> -->
+<mat-card class="card">
+    <!-- Use the mat-card-content to add the proper spacing. -->
+    <mat-card-content>
+        {{name}}
+  
+      <mat-icon (click)="delete.next()" class="icon">cancel_outline</mat-icon>
+    </mat-card-content>
+  
+    <!-- Section for buttons -->
+    <mat-card-actions>
+      <!-- <button mat-button (click)="delete.next()">DELETE</button> -->
+      <button mat-button (click)="edit.next()">
+      <fa-icon [icon]="faPen"></fa-icon>
+
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  
