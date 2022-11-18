@@ -1,4 +1,5 @@
-# AngularToDo
+# To-Do
+It helps you to manage your daily to do tasks in well defined manner.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 

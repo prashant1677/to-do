@@ -49,16 +49,9 @@
       <a *ngIf="isLoggedIn" class="navbar-brand logo" href="/todo">Todo</a>
     </span>
     <span class="example-spacer"></span>
-    <!-- <span > -->
       <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/register" >Register</a>
-    <!-- </span> -->
-    <!-- <span > -->
       <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/login" >Login</a>
-    <!-- </span> -->
-
-    <!-- <span *ngIf="isLoggedIn"> -->
       <a *ngIf="isLoggedIn" class="nav-link" style="cursor: pointer;" (click)="onLogout()">Logout</a>
-    <!-- </span> -->
     <!-- <mat-icon class="example-icon">favorite</mat-icon>
     <mat-icon class="example-icon">delete</mat-icon> -->
   </mat-toolbar-row>

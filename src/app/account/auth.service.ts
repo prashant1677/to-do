@@ -41,14 +41,15 @@ export class AuthService {
   // createAccount(authData:AuthData) {
     createAccount(regData) {
     // const regData1 = {fullName:fullName, email: email, password: password };
-    this.http.post(BACKEND_URL + "/register",regData).subscribe(
-      () => {
+    this.http.post(BACKEND_URL + "/register",regData)
+    .subscribe({
+      next:(response) => {
         this.router.navigate(["/"]);
       },
-      error => {
+      error:(err) => {
         this.authStatusListener.next(false);
       }
-    );
+    });
   }
 
   // login(authData:AuthData) {

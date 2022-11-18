@@ -27,7 +27,7 @@
             </div>
 
             <div class="login__field">
-              <input type="text" formControlName="password" class="login__input" placeholder="password" 
+              <input type="password" formControlName="password" class="login__input" placeholder="password" 
               [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"/>
               <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password'].errors.required">Password is required</div>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="login__field">
-              <input type="text" formControlName="cnfPassword" class="login__input" placeholder="Confirm password" 
+              <input type="password" formControlName="cnfPassword" class="login__input" placeholder="Confirm password" 
               [ngClass]="{ 'is-invalid': submitted && f['cnfPassword'].errors }"/>
               <div *ngIf="submitted && f['cnfPassword'].errors" class="invalid-feedback">
                 <div *ngIf="f['cnfPassword'].errors.required">Password is required</div>
