@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { AddEditComponent } from './todo/add-edit/add-edit.component';
 // import { DialogComponent } from './todo/dialog/dialog.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot({
+			timeOut: 3000,
+			positionClass: 'toast-bottom-right',
+			preventDuplicates: true,
+		}),// ToastrModule added
   ],
   exports: [
     // CommonModule,

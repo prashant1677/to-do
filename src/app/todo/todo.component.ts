@@ -7,6 +7,7 @@ import { AuthService } from '../account/auth.service'
 import {MatDialog} from '@angular/material/dialog';
 // import { DialogComponent } from '../dialog/dialog.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo',
@@ -26,7 +27,7 @@ export class TodoComponent implements OnInit {
   newTaskTxtBox=false;
   addBucketForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public todoDataService: TodoDataService, private authService: AuthService, public dialog: MatDialog) {
+  constructor(private fb: FormBuilder, public todoDataService: TodoDataService, private authService: AuthService, public dialog: MatDialog, private toastr: ToastrService) {
     console.log("Constructor called");
 
     // this.todoForm = this.fb.group({   //configuring the form fb formbuilder for validations 
@@ -111,6 +112,8 @@ export class TodoComponent implements OnInit {
           // this.isEditEnabled = false;
           // this.todoForm.reset();
           this.fetchTodoList();
+          this.toastr.success("Task saved");
+
         }
       });
   }
@@ -123,6 +126,8 @@ export class TodoComponent implements OnInit {
       (res: any) => {
         console.log("Bucket saved::" + res);
         this.fetchTodoList();
+        this.toastr.success("Bucket added");
+
         this.addBucketForm.reset();
       })
   }
@@ -132,6 +137,7 @@ export class TodoComponent implements OnInit {
       (res:any)=>{
         console.log("Bucket deleted");
         this.fetchTodoList();
+        this.toastr.success("List deleted");
 
       }
     )
@@ -141,15 +147,21 @@ export class TodoComponent implements OnInit {
 
   deleteTask( task: Task) {
     console.log("in deleteTask::", { taskId: task.id});
-    this.todoDataService.deleteTask(task.id).subscribe(
+    this.todoDataService.deleteTask(task.id)
+    .subscribe(
       (res: any) => {
         this.fetchTodoList();
         if (res.message === "Success") {
+          this.toastr.success("Task deleted");
           console.log("Data deleted Successfully...");
         }
       }
     );
   }
+
+  // error(err){
+  //   this.toastr.success('Failed', `Error: ${err.status} ${err.message}`);
+  // }
 
   // swap(src: string, srcIdx: number, dst: string, dstIdx: number) {
   //   var statusCode!: number;

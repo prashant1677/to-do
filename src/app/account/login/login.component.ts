@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 // import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes ,Router} from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from "rxjs";
 
 @Component({
@@ -20,12 +20,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
       authStatus => {
         this.isLoggedIn = false;
       }
     );
+    if (this.authService.getIsAuth()) {
+      this.router.navigate(['/todo']);
+    }
   }
 
   ngOnInit() {
@@ -50,38 +53,46 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // console.log("x::",x);
     this.authService.login(this.f['userName'].value, this.f['password'].value)
-    .subscribe({
-      next:(response) => {
-        const token = response.token;
-        // this.token = token;
-        if (token) {
-          console.log("In auth login",response);
-          const expiresInDuration = response.expiresIn;
-          this.authService.setAuthTimer(expiresInDuration);
-          // this.isAuthenticated = true;
-          // this.userId = response.userId;
-          // this.authStatusListener.next(true);
-          const now = new Date();
-          const expirationDate = new Date(
-            now.getTime() + expiresInDuration * 1000
-          );
-          console.log("expirationDate::",expirationDate);
-          this.authService.saveAuthData(token, expirationDate, response.userId);
-          this.router.navigate(["/todo"]);
-          console.log("Login success");
+    // this.success()
+  //   .subscribe({
+  //     next:(response) => {
+  //       const token = response.token;
+  //       // this.token = token;
+  //       if (token) {
+  //         console.log("In auth login",response);
+  //         // const expiresInDuration = response.expiresIn;
+  //         this.authService.setAuthTimer(response.expiresIn);
+  //         // this.authService.autoAuthUser();
+  //         this.authService.isAuthenticated = true;
+  //         this.authService.userId = response.userId;
+  //         this.authService.authStatusListener.next(true);
+  //         const now = new Date();
+  //         const expirationDate = new Date(
+  //           now.getTime() + response.expiresIn * 1000
+  //         );
+  //         console.log("expirationDate::",expirationDate);
+  //         this.authService.saveAuthData(token, expirationDate, response.userId);
+  //         this.router.navigate(["/todo"]);
+  //         console.log("Login success");
+  //         this.toastr.success('Success', "Logged In Successfully");
           
-        }
-        else{
-          // if(response.statusCode==0){
-            console.log("Username or password is incorrect");
-          // }
-        }
-      },
-      error:(err) => {
-        console.log("Login Failed ::",err);
-        // this.authService.authStatusListener.next(false);
-      }
-  });
+  //       }
+  //       else{
+  //         // if(response.statusCode==0){
+  //         this.toastr.success('Failed', "Username or password is incorrect");
+  //           console.log("Username or password is incorrect");
+  //         // }
+  //       }
+  //     },
+  //     error:(err) => {
+  //       console.log("Login Failed ::",err);
+  //       this.toastr.success('Failed', `Error: ${err.status} ${err.message}`);
+
+  //       // this.authService.authStatusListener.next(false);
+  //     }
+  // });
+
+
 // if(this.authStatusSub){
 //   console.log("LOGIN SUCCESS");
 // }

@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from '@angula
 import {  timer, Observable, Subscription } from "rxjs";
 // import custom validator to validate that password and confirm password fields match
 import { MustMatch } from '../../_helpers/must-match.validator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -20,7 +21,7 @@ export class RegistrationComponent implements OnInit {
   submitted = false;
   secondsToRedirect = 5;
 
-  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
 
   ngOnInit() {
@@ -47,37 +48,48 @@ export class RegistrationComponent implements OnInit {
 
   get f() { return this.registrationForm.controls; }
  
-
-  onSignup() {
+  onSignup(form: NgForm) {
     this.submitted = true;
     console.log("form::",this.registrationForm.value);
     if (this.registrationForm.invalid || this.registrationForm.value.password!=this.registrationForm.value.cnfPassword) {
-    console.log("Invalid form::");
+      console.log("Invalid form::");
       return;
     }
-    // this.isLoggedIn = true;
     // console.log("sign up::",form.value.fullName+"--",form.value.userName, "--", form.value.password)
-    this.authService.createAccount(this.registrationForm.value)
-    .subscribe({
-      next:(response) => {
-
-        //5 seconds countdown
-        timer(0, 1000).subscribe(n=>this.secondsToRedirect-=1)
-    
-        console.log("User Registered successfully");
-        this.isLoggedIn=true;
-        setTimeout(() => {
-          this.router.navigate(["/login"]);
-        }, 4000);
-        
-      },
-      error:(err) => {
-        // this.authService.authStatusListener.next(false);
-        console.log("User not Registered");
-
-      }
-    });
+    this.authService.createAccount(this.registrationForm.value);
+    this.isLoggedIn = true;
   }
+  // onSignup() {
+  //   this.submitted = true;
+  //   console.log("form::",this.registrationForm.value);
+  //   if (this.registrationForm.invalid || this.registrationForm.value.password!=this.registrationForm.value.cnfPassword) {
+  //   console.log("Invalid form::");
+  //     return;
+  //   }
+  //   // this.isLoggedIn = true;
+  //   // console.log("sign up::",form.value.fullName+"--",form.value.userName, "--", form.value.password)
+  //   this.authService.createAccount(this.registrationForm.value)
+  //   .subscribe({
+  //     next:(response) => {
+
+  //       //5 seconds countdown
+  //       timer(0, 1000).subscribe(n=>this.secondsToRedirect-=1)
+    
+  //       console.log("User Registered successfully");
+  //       this.isLoggedIn=true;
+  //       setTimeout(() => {
+  //         this.router.navigate(["/login"]);
+  //       }, 4000);
+  //       this.toastr.success('Success', "User registered successfully");
+        
+  //     },
+  //     error:(err) => {
+  //       // this.authService.authStatusListener.next(false);
+  //       console.log("User not Registered");
+
+  //     }
+  //   });
+  // }
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
